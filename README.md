@@ -1,3 +1,3 @@
 # userManager
 
-This working is to showing a modern application using WPF and Mahapps in the MVVM pattern
+This work is to show a modern application using WPF and Mahaps in the MVVM pattern
