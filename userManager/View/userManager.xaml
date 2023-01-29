@@ -48,6 +48,8 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+        <DataGrid IsReadOnly="True" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Grid.RowSpan="1"
+                  MaxWidth="500" HorizontalAlignment="Center" ItemsSource="{Binding dataUsers}"/>
         <Grid Grid.Column="4" Grid.Row="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>

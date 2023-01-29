@@ -8,30 +8,46 @@ using userManager.Model;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
 using System.Windows;
+using System.Collections.ObjectModel;
+using userManager.View.controls;
 
 namespace userManager.ViewModel
 {
     public class userManagerModel
     {
         public ICommand AddUser { get; private set; }
+        public ObservableCollection<Users> dataUsers { get; private set; }
         public userManagerModel()
         {
 
             this.AddUser = new RelayCommand(AddingUser);
             using(var databaseConfig = new DatabaseConfig())
             {
-                Users item = new Users(1, "erikson", "erere", DateTime.Now, 5);
+                Users item = new Users();
                 databaseConfig.createTableIfNotExist<Users>();
                 List<Users> users = databaseConfig.getValues<Users>(item);
-
-                databaseConfig.publishValue<Users>(item);
+                dataUsers = new ObservableCollection<Users>();
+                
+                foreach(var user in users) dataUsers.Add(user);  
 
             }
         }
 
+        public void updateDataGrid()
+        {
+            dataUsers.Clear();
+            using (var databaseConfig = new DatabaseConfig())
+            {
+                Users item = new Users();
+                List<Users> users = databaseConfig.getValues<Users>(item);
+                foreach (var user in users) dataUsers.Add(user);
+            }
+        }
         public void AddingUser()
         {
-            MessageBox.Show("ADICIONAR USUARIO");
+            addUserPopPup poppup = new addUserPopPup();
+            poppup.ShowDialog();
+            updateDataGrid();
         }
     }
 }

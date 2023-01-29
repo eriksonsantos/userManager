@@ -141,7 +141,11 @@
     </Compile>
     <Compile Include="Model\Database\DatabaseConfig.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="ViewModel\controls\addUserModel.cs" />
     <Compile Include="ViewModel\userManagerModel.cs" />
+    <Compile Include="View\controls\addUserPopPup.xaml.cs">
+      <DependentUpon>addUserPopPup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\userManager.xaml.cs">
       <DependentUpon>userManager.xaml</DependentUpon>
     </Compile>
@@ -174,6 +178,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="View\controls\addUserPopPup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\userManager.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

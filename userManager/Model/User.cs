@@ -15,17 +15,13 @@ namespace userManager.Model
         public string createdDate { get; set; }
         public int Telephone { get; set; }
 
-        public Users(int id, string name, string address, DateTime createdDate, int telephone)
+        public Users(string name, string address,int telephone)
         {
-            Id = id;
             Name = name;
             Address = address;
-            this.createdDate = createdDate.ToString();
+            this.createdDate = DateTime.Now.ToString();
             Telephone = telephone;
         }
-        public Users()
-        {
-
-        }
+        public Users() { }
     }
 }

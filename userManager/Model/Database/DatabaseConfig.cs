@@ -26,52 +26,55 @@ namespace userManager.Model.Database
 
         public void createTableIfNotExist<T>()
         {
-            this.connection.Open();
-            MySqlCommand mySqlCommand = this.connection.CreateCommand();
-            var type = typeof(T);
-
-            List<string> properties = new List<string>();
-            List<string> types = new List<string>();
-
-            foreach (var prop in type.GetProperties())
+            try
             {
-                properties.Add(prop.Name);
-                types.Add(prop.PropertyType.Name);
-            }
+                this.connection.Open();
+                MySqlCommand mySqlCommand = this.connection.CreateCommand();
+                var type = typeof(T);
 
-            string query = $"CREATE TABLE IF NOT EXISTS {type.Name} (";
-            for (var i = 0; i < types.Count; i++)
-            {
-                switch (types[i].ToLower())
+                List<string> properties = new List<string>();
+                List<string> types = new List<string>();
+
+                foreach (var prop in type.GetProperties())
                 {
-                    case "int32":
-
-                        if (properties[i].ToLower() == "id")
-                            query = (i == 0) ? $"{query} {properties[i]} INT NOT NULL PRIMARY KEY AUTO_INCREMENT" :
-                                $"{query}, {properties[i]} INT";
-                        else
-                            query = (i == 0) ? $"{query} {properties[i]} INT" :
-                                     $"{query}, {properties[i]} INT";
-                        break;
-
-                    case "string":
-                        query = (i == 0) ? $"{query} {properties[i]} VARCHAR(50)" :
-                               $"{query}, {properties[i]} VARCHAR(50)";
-
-                        break;
-
-                    case "double":
-                        query = (i == 0) ? $"{query} {properties[i]} DOUBLE" :
-                               $"{query}, {properties[i]} DOUBLE";
-
-                        break;
-
+                    properties.Add(prop.Name);
+                    types.Add(prop.PropertyType.Name);
                 }
-            }
-            query = $"{query})";
-            mySqlCommand.CommandText = query;
-            mySqlCommand.ExecuteReader();
-            this.connection.Close();
+
+                string query = $"CREATE TABLE IF NOT EXISTS {type.Name} (";
+                for (var i = 0; i < types.Count; i++)
+                {
+                    switch (types[i].ToLower())
+                    {
+                        case "int32":
+
+                            if (properties[i].ToLower() == "id")
+                                query = (i == 0) ? $"{query} {properties[i]} INT NOT NULL PRIMARY KEY AUTO_INCREMENT" :
+                                    $"{query}, {properties[i]} INT";
+                            else
+                                query = (i == 0) ? $"{query} {properties[i]} INT" :
+                                         $"{query}, {properties[i]} INT";
+                            break;
+
+                        case "string":
+                            query = (i == 0) ? $"{query} {properties[i]} VARCHAR(50)" :
+                                   $"{query}, {properties[i]} VARCHAR(50)";
+
+                            break;
+
+                        case "double":
+                            query = (i == 0) ? $"{query} {properties[i]} DOUBLE" :
+                                   $"{query}, {properties[i]} DOUBLE";
+
+                            break;
+
+                    }
+                }
+                query = $"{query})";
+                mySqlCommand.CommandText = query;
+                mySqlCommand.ExecuteReader();
+                this.connection.Close();
+            }catch(Exception ex) { }
         }
 
 

@@ -1,0 +1,35 @@
+﻿<Window x:Class="userManager.View.controls.addUserPopPup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:userManager.View.controls" xmlns:materialDesign="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf" xmlns:controls="clr-namespace:userManager.ViewModel.controls" 
+        d:DataContext="{d:DesignInstance Type=controls:addUserModel}"
+        mc:Ignorable="d"
+        MaxHeight="280" Width="450">
+    <Grid>
+        <StackPanel Margin="16">
+            <TextBlock Text="Insere o nome do novo usuário" />
+            <TextBox x:Name="NameTextBox" Margin="0,8,0,0" 
+                     HorizontalAlignment="Stretch" Text="{Binding Name}" />
+            <TextBlock Text="Insere o endereço do novo usuário" />
+            <TextBox x:Name="AddressTextBox" Margin="0,8,0,0" 
+                     HorizontalAlignment="Stretch"  Text="{Binding Address}" />
+
+            <TextBlock Text="Insere o numero de telefone" />
+            <TextBox x:Name="TelephoneTextBox" 
+                     PreviewTextInput="TelephoneTextBox_PreviewTextInput" 
+                     Margin="0,8,0,0" HorizontalAlignment="Stretch"  Text="{Binding Telephone}" />
+            
+            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                <Button Margin="0,8,8,0" Background="#FF3EC5D4" Content="ACEITAR" IsDefault="True" Style="{StaticResource MaterialDesignFlatButton}" Command="{Binding InsertUser}" />
+
+                <Button Margin="0,8,8,0" Background="#FF3EC5D4" Content="CANCELAR" IsCancel="True" Style="{StaticResource MaterialDesignFlatButton}">
+                    <Button.CommandParameter>
+                        <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">False</system:Boolean>
+                    </Button.CommandParameter>
+                </Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
