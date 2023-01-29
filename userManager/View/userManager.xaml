@@ -1,0 +1,102 @@
+﻿<mah:MetroWindow  xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                  x:Class="userManager.View.userManager"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:userManager.View"
+        mc:Ignorable="d"
+        Height="450" Width="800" 
+        Background="Transparent"
+        WindowTitleBrush="#FF3EC5D4"
+        WindowState="Maximized" NonActiveWindowTitleBrush="#FF3EC5D4">
+    <mah:MetroWindow.LeftWindowCommands>
+        <mah:WindowCommands  ShowSeparators="False">
+            <Label Content="ERIKSON" FontFamily="Franklin Gothic Demi" FontSize="20"
+                   Foreground="White"/>
+        </mah:WindowCommands>
+    </mah:MetroWindow.LeftWindowCommands>
+    <mah:MetroWindow.RightWindowCommands>
+        <mah:WindowCommands  ShowSeparators="False">
+            <Grid Height="30">
+                <Ellipse Width="25" Height="25" Fill="White" 
+                         HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label Content="EP" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Grid>
+            
+        </mah:WindowCommands>
+    </mah:MetroWindow.RightWindowCommands>
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="Black"/>
+                <GradientStop Color="#FF20848A" Offset="1"/>
+                <GradientStop Color="#FF3EC5D4" Offset="0"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="100" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Column="4" Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0"
+                 HorizontalAlignment="Center" 
+                 VerticalAlignment="Center"
+                 Grid.Row="4"
+                 Cursor="Hand" 
+                    Command="{Binding AddUser}" BorderThickness="0">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="#FF2323FB" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border x:Name="Border" CornerRadius="30" Background="{TemplateBinding Background}">
+                                        <Grid Width="60" Height="60">
+                                            <Label Content="+" VerticalAlignment="Center"
+                                                   FontSize="35" FontWeight="Bold" Foreground="white" HorizontalAlignment="Center"/>
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        </Grid>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#FF0404FF" TargetName="Border" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+                <!--<Border Background="blue" CornerRadius="30">
+                    <Grid>
+                        <Label Content="+"
+                               VerticalContentAlignment="Center" 
+                            FontSize="30"
+                            HorizontalContentAlignment="Center"
+                            Foreground="white" FontWeight="Bold"/>
+                        <ContentPresenter VerticalAlignment="Center" 
+                                          Width="60" Height="60" />
+                    </Grid>
+                </Border>-->
+            </Button>
+
+        </Grid>
+
+
+    </Grid>
+</mah:MetroWindow>

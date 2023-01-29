@@ -1,3 +1,4 @@
 packages
-bin
-obj
+userManager/bin
+userManager/obj
+.vs
