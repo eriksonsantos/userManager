@@ -1,4 +1,3 @@
-packages
+packages/*
 userManager/bin
-userManager/obj
 .vs/
