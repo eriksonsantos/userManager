@@ -13,7 +13,7 @@ namespace userManager.Model.Database
         {
             try
             {
-                var connectionConfig = "server=localhost;Database=users;Uid=root;Pwd=12345678";
+                var connectionConfig = "server=localhost;Database=users;Uid=root;Pwd=1234567";
                 this.connection = new MySqlConnection(connectionConfig);
 
             }

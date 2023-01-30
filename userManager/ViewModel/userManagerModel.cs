@@ -19,29 +19,37 @@ namespace userManager.ViewModel
         public ObservableCollection<Users> dataUsers { get; private set; }
         public userManagerModel()
         {
+            try { 
 
             this.AddUser = new RelayCommand(AddingUser);
-            using(var databaseConfig = new DatabaseConfig())
+                using (var databaseConfig = new DatabaseConfig())
+                {
+                    Users item = new Users();
+                    databaseConfig.createTableIfNotExist<Users>();
+                    List<Users> users = databaseConfig.getValues<Users>(item);
+                    dataUsers = new ObservableCollection<Users>();
+
+                    foreach (var user in users) dataUsers.Add(user);
+                }
+
+            }catch(Exception ex)
             {
-                Users item = new Users();
-                databaseConfig.createTableIfNotExist<Users>();
-                List<Users> users = databaseConfig.getValues<Users>(item);
-                dataUsers = new ObservableCollection<Users>();
-                
-                foreach(var user in users) dataUsers.Add(user);  
 
             }
         }
 
         public void updateDataGrid()
         {
-            dataUsers.Clear();
-            using (var databaseConfig = new DatabaseConfig())
+            try
             {
-                Users item = new Users();
-                List<Users> users = databaseConfig.getValues<Users>(item);
-                foreach (var user in users) dataUsers.Add(user);
-            }
+                dataUsers.Clear();
+                using (var databaseConfig = new DatabaseConfig())
+                {
+                    Users item = new Users();
+                    List<Users> users = databaseConfig.getValues<Users>(item);
+                    foreach (var user in users) dataUsers.Add(user);
+                }
+            }catch(Exception ex) { }
         }
         public void AddingUser()
         {

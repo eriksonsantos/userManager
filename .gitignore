@@ -1,2 +1,4 @@
 packages/*
 .vs/
+userManager/bin
+userManager/obj
